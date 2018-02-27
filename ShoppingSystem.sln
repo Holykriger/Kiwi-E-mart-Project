@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse", "Warehouse\Ware
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystem_Entities", "ShoppingSystem_Entities\ShoppingSystem_Entities.csproj", "{701C933B-D04B-4129-8AB0-6257C24022B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coordinator_RetailToWarehouse", "Coordinator_RetailToWarehouse\Coordinator_RetailToWarehouse.csproj", "{515E6A86-1493-4B79-9AB8-3BCCCF603E8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coordinator_RetailToWarehouse", "Coordinator_RetailToWarehouse\Coordinator_RetailToWarehouse.csproj", "{515E6A86-1493-4B79-9AB8-3BCCCF603E8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout", "Checkout\Checkout.csproj", "{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout", "Checkout\Checkout.csproj", "{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleWarehouses", "MultipleWarehouses\MultipleWarehouses.csproj", "{8DBBE46C-88FD-439F-9159-2C9547F30195}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DBBE46C-88FD-439F-9159-2C9547F30195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBBE46C-88FD-439F-9159-2C9547F30195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DBBE46C-88FD-439F-9159-2C9547F30195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBBE46C-88FD-439F-9159-2C9547F30195}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
