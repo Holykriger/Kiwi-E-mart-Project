@@ -36,13 +36,6 @@ namespace ClientUI
                 Console.WriteLine("Failed to log in.");
             }
             Console.WriteLine("Please press >ENTER< to continue...");
-            //Console.ForegroundColor = ConsoleColor.Red;
-            //Console.WriteLine("Got message: {0}", product.ID);
-            //Console.WriteLine(product.Name);
-            //Console.WriteLine(product.Description);
-            //Console.WriteLine(product.Quantity);
-            //Console.WriteLine();
-            //Console.ResetColor();
         }
     }
 }
