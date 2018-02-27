@@ -11,11 +11,11 @@ namespace ClientUI
     {
         static bool LoggedInSuccesfully;
         public static void AttemptLogin(string userName, string password) {
-            Publish(userName, password);
-            //Needs to be made async, possibly with tasks. Also need to split Cookie into 2 parts so client and retail don't both listen for cookies. Client when verifying user login and retail when confirming that user is logged in. Can perhaps make a "ConfirmIsLoggedIn" class which holds a cookie.
+            Login(userName, password);
+            
         }
 
-        static void Publish(string userName, string password)
+        static void Login(string userName, string password)
         {
             using (var bus = RabbitHutch.CreateBus("host=localhost;timeout=2"))
             {
@@ -24,15 +24,11 @@ namespace ClientUI
                     var task = bus.RequestAsync<User, Cookie>(new User(userName, password));
                     // Each response is handled by a separate task.
                     // the requester can have multiple outstanding requests.
-                  
                     task.ContinueWith(response => HandleResponse(response)).Wait();
                 }
                 catch (AggregateException ex) {
                     LoggedInSuccesfully = false;
                     Console.WriteLine("Failed to log in.");
-                    //Console.ForegroundColor = ConsoleColor.Red;
-                    //Console.WriteLine(ex.InnerException.Message);
-                    //Console.ResetColor();
                 }
             }
         }
