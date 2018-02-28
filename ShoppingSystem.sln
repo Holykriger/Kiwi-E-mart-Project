@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientUI", "ClientUI\ClientUI.csproj", "{EA9AC1D9-F1FD-4FCB-9F66-F099C865EE5A}"
 EndProject
@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse", "Warehouse\Ware
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystem_Entities", "ShoppingSystem_Entities\ShoppingSystem_Entities.csproj", "{701C933B-D04B-4129-8AB0-6257C24022B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coordinator_RetailToWarehouse", "Coordinator_RetailToWarehouse\Coordinator_RetailToWarehouse.csproj", "{515E6A86-1493-4B79-9AB8-3BCCCF603E8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coordinator_RetailToWarehouse", "Coordinator_RetailToWarehouse\Coordinator_RetailToWarehouse.csproj", "{515E6A86-1493-4B79-9AB8-3BCCCF603E8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout", "Checkout\Checkout.csproj", "{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout", "Checkout\Checkout.csproj", "{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket", "Basket\Basket.csproj", "{E2D3E34F-A75E-4604-85BC-AD606A302916}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2D3E34F-A75E-4604-85BC-AD606A302916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2D3E34F-A75E-4604-85BC-AD606A302916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2D3E34F-A75E-4604-85BC-AD606A302916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2D3E34F-A75E-4604-85BC-AD606A302916}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
