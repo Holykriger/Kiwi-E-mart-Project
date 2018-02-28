@@ -9,6 +9,14 @@ namespace ClientUI
 {
     class ClientRequestResponse_Login
     {
+        /*
+         To measure:
+         "Where is the problem?" before you start fixing it.
+         Response times from client to server.
+         Response times inside server.
+         Database response times.
+        */
+
         static bool LoggedInSuccesfully;
         public static void AttemptLogin(string userName, string password) {
             Login(userName, password);

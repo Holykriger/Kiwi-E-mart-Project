@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientUI", "ClientUI\ClientUI.csproj", "{EA9AC1D9-F1FD-4FCB-9F66-F099C865EE5A}"
 EndProject
@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coordinator_RetailToWarehou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout", "Checkout\Checkout.csproj", "{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}"
 EndProject
-<<<<<<< HEAD
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket", "Basket\Basket.csproj", "{E2D3E34F-A75E-4604-85BC-AD606A302916}"
-=======
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleWarehouses", "MultipleWarehouses\MultipleWarehouses.csproj", "{8DBBE46C-88FD-439F-9159-2C9547F30195}"
->>>>>>> 427abd2fac75718a59529c900f3a4d8f2f0a54c8
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket", "Basket\Basket.csproj", "{E2D3E34F-A75E-4604-85BC-AD606A302916}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultipleWarehouses", "MultipleWarehouses\MultipleWarehouses.csproj", "{8DBBE46C-88FD-439F-9159-2C9547F30195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitoring", "Monitoring\Monitoring.csproj", "{00F398E5-9D11-4419-8772-279B152D7044}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,17 +51,18 @@ Global
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AD1A905-894B-4EFE-B04A-F6DB5ABC83A2}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{E2D3E34F-A75E-4604-85BC-AD606A302916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2D3E34F-A75E-4604-85BC-AD606A302916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2D3E34F-A75E-4604-85BC-AD606A302916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2D3E34F-A75E-4604-85BC-AD606A302916}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{8DBBE46C-88FD-439F-9159-2C9547F30195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DBBE46C-88FD-439F-9159-2C9547F30195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DBBE46C-88FD-439F-9159-2C9547F30195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DBBE46C-88FD-439F-9159-2C9547F30195}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> 427abd2fac75718a59529c900f3a4d8f2f0a54c8
+		{00F398E5-9D11-4419-8772-279B152D7044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F398E5-9D11-4419-8772-279B152D7044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F398E5-9D11-4419-8772-279B152D7044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F398E5-9D11-4419-8772-279B152D7044}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
