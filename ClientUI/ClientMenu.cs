@@ -41,7 +41,7 @@ namespace ClientUI
                     userName = Console.ReadLine();
                     Console.WriteLine("Password: ");
                     password = Console.ReadLine();
-                    ClientPublisher_Login.AttemptLogin(userName, password);
+                    ClientRequestResponse_Login.AttemptLogin(userName, password);
                     break;
                 case "register user":
                     break;

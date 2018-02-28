@@ -6,7 +6,7 @@ namespace Retail
     {
         static void Main(string[] args)
         {
-            RetailSubscriber_Login.AwaitLoginAttempts();
+            RetailRequestResponse_Login.AwaitLoginAttempts();
         }
     }
 }

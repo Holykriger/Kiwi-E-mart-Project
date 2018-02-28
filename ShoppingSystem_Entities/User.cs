@@ -17,6 +17,15 @@ namespace ShoppingSystem_Entities
             this.password = password;
         }
 
+        public static bool VerifyUserCredentials(User loginInfo) {
+            foreach (var user in UserList)
+            {
+                if (user.userName.Equals(loginInfo.userName) && user.password.Equals(loginInfo.password))
+                return true;
+            }
+            return false;
+        }
+
         public string userName { get; private set; } = "no user";
         public string password { get; private set; } = "no password";
     }

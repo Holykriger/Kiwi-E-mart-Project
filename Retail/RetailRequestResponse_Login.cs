@@ -3,50 +3,49 @@ using ShoppingSystem_Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Retail
 {
-    public class RetailSubscriber_Login
+    public class RetailRequestResponse_Login
     {
-        public static bool AwaitLoginAttempts()
+        public static void AwaitLoginAttempts()
         {
-            return Subscribe();
+            ReceiveAndHandleLoginAttempts();
         }
 
-        public static bool Subscribe()
+        static void ReceiveAndHandleLoginAttempts()
         {
             using (var bus = RabbitHutch.CreateBus("host=localhost"))
             {
-                bus.Subscribe<User>("test", HandleProduct);
+                bus.RespondAsync<User, Cookie>(request => Task.Factory.StartNew(() => 
+                {
+                    return AttemptLogin(request);
+                }
+                ));
 
                 Console.WriteLine("Listening for login attempts. Hit >ENTER< to quit.");
                 Console.ReadLine();
             }
-            return Cookie.ClientCheckIsValidUserString("NotLoggedIn");
         }
 
-        static void HandleProduct(User user)
+        static Cookie AttemptLogin(User user)
         {
             Console.WriteLine("Checkin if user is valid, info received - USERNAME: "+ user.userName + " PASSWORD: " +user.password);
             //Todo: remember to verify password and not just username.
-            if (!Cookie.ServerCheckIsValidUserString("NotLoggedIn"))
+
+            if (User.VerifyUserCredentials(user))
             {
                 Console.WriteLine("Valid user, sending verification cookie.");
                 Cookie cookie = new Cookie(); 
                 cookie.CurrentCookieString = GetUserAccountString(user.userName);
-                RetailPublisher_Login.ReplyToLoginAttempt(cookie);
+                return cookie;
             }
             else
             {
                 Console.WriteLine("User could not be verified.");
+                return null;
             }
-            //Console.ForegroundColor = ConsoleColor.Red;
-            //Console.WriteLine("Got message: {0}", product.ID);
-            //Console.WriteLine(product.Name);
-            //Console.WriteLine(product.Description);
-            //Console.WriteLine(product.Quantity);
-            //Console.WriteLine();
-            //Console.ResetColor();
         }
 
         public static string GetUserAccountString(string userName) {
@@ -66,6 +65,7 @@ namespace Retail
                     accountString = "Alex123";
                     break;
                 default:
+                    accountString = "NotValidUser";
                     break;
             }
             return accountString;
