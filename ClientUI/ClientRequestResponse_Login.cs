@@ -1,4 +1,5 @@
 ﻿using EasyNetQ;
+using Monitoring;
 using ShoppingSystem_Entities;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace ClientUI
         */
 
         static bool LoggedInSuccesfully;
+        static MonitorObject MonitorObject;
         public static void AttemptLogin(string userName, string password) {
             Login(userName, password);
             
@@ -28,6 +30,8 @@ namespace ClientUI
             using (var bus = RabbitHutch.CreateBus("host=localhost;timeout=2"))
             {
                 try {
+                    MonitorObject = new MonitorObject();
+                    MonitorObject.StartMonitoring();
                     Console.WriteLine("Attempting to log in with USERNAME: " + userName + " and PASSWORD: " + password); //Showing password for debugging.
                     var task = bus.RequestAsync<User, Cookie>(new User(userName, password));
                     // Each response is handled by a separate task.
@@ -37,6 +41,7 @@ namespace ClientUI
                 catch (AggregateException ex) {
                     LoggedInSuccesfully = false;
                     Console.WriteLine("Failed to log in.");
+                    MonitorObject.StopMonitoring();
                 }
             }
         }
@@ -63,6 +68,8 @@ namespace ClientUI
                 LoggedInSuccesfully = false;
                 Console.WriteLine("Failed to log in.");
             }
+            MonitorObject.StopMonitoring();
+            Console.WriteLine("Login time: "+ MonitorObject.TimeSpan);
             Console.WriteLine("Please press >ENTER< to continue...");
         }
     }
