@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WareHouse = Warehouse.Warehouse;
 using Product = ShoppingSystem_Entities.Product;
+using Location = ShoppingSystem_Entities.Location;
 namespace WareHouseController
 {
     class Program
@@ -14,19 +15,43 @@ namespace WareHouseController
         static void Main(string[] args)
         {
             
+            
         }
-        private void AddWareHouse(int ID,string County,string Municipality)
+        public void TestRun()
+        {
+            AddWareHouse(1, "Danmark", "Esbjerg");
+            AddWareHouse(2, "Tyskland", "München");
+            AddWareHouse(3, "Norge", "Oslo");
+        }
+        private WareHouse AddWareHouse(int ID,string County,string Municipality)
         {
             int Id = ID;
             string county = County;
             string municipality = Municipality;
-            WareHouse.Add(new WareHouse(Id,county,municipality));
+            WareHouse NewWareHouse = new WareHouse(Id, county, municipality);
+            Task.Factory.StartNew(() => NewWareHouse);
+            WareHouse.Add(NewWareHouse);
+            return NewWareHouse;
         }
-        private WareHouse FindClosestWareHouse()
+        private WareHouse FindClosestWareHouse(List<WareHouse> WareHouseList)
         {
             WareHouse ClosestWarehouse = new WareHouse(-1,"Error","Error");
 
             return ClosestWarehouse;
+        }
+        public WareHouse FindProducts(Product product, Location location)
+        {
+            
+            WareHouse ClosestWarehouse = FindClosestWareHouse(WareHouse);
+
+            return ClosestWarehouse;
+        }
+        public bool RemoveProducts(Product product)
+        {
+
+            WareHouse ClosestWarehouse = FindClosestWareHouse(WareHouse);
+
+            return true;
         }
     }
 }
