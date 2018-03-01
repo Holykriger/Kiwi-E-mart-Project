@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Monitoring\Monitoring.csproj" />
     <ProjectReference Include="..\ShoppingSystem_Entities\ShoppingSystem_Entities.csproj" />
   </ItemGroup>
 
