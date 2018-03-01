@@ -8,7 +8,7 @@ namespace Basket
     public class BasketManager
     {
         //reference to the objectpool blueprint
-        BasketObjectPool<Baskets> objPool;
+        static BasketObjectPool<Baskets> objPool;
 
         //static dict of active baskets
         public static Dictionary<string, Baskets> activelist = new Dictionary<string, Baskets>();
@@ -47,7 +47,7 @@ namespace Basket
         }
 
         //gets object from pool, and adds it to the dict
-        public void GetObjectPool(string userID)
+        public static void GetObjectPool(string userID)
         {
             
             //gets object from the pool
@@ -59,9 +59,16 @@ namespace Basket
         }
 
         //creates the objectpool where size is the amount of empty baskets
-       public void CreateObjectPool(int size)
+       public static void CreateObjectPool(int size)
         {
              objPool = new BasketObjectPool<Baskets>(size);
+        }
+
+        public static void FillTestBasket(string userID)
+        {
+            GetObjectPool(userID);
+            activelist[userID].AdditemToBasket(new Product{ ID = 1, Name = "Banana", Quantity = 5, Description = "Its a Banana"});
+            activelist[userID].AdditemToBasket(new Product { ID = 2, Name = "Seng", Quantity = 4, Description = "Its a Bed God Damnit" });
         }
 
     }
