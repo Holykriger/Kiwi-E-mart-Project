@@ -39,12 +39,17 @@ namespace WareHouseController
 
             return ClosestWarehouse;
         }
-        public List<WareHouse> FindProduct(Product product, Location location)
+        public List<Product> FindProduct(Product product, Location location)
         {
             
             WareHouse ClosestWarehouse = FindClosestWareHouse(WareHouse);
-
-            return new List<WareHouse>();
+            List<Product> ReturnList = new List<Product>()
+            {
+                  new Product(){ID = -1,Name = "Apple",Quantity = 25,Location = new Location(){Area = 1,Country="Russia",Municipality="esbjerg"}}
+                , new Product(){ID = -2,Name = "Apple",Quantity = 6 ,Location = new Location(){Area = 2,Country="Denmark",Municipality="esbjerg"}}
+                , new Product(){ID = -3,Name = "Apple",Quantity = 25,Location = new Location(){Area = 3,Country="Russia",Municipality="esbjerg"}},
+            };
+            return new List<Product>();
         }
         public bool RemoveProducts(Product product)
         {
