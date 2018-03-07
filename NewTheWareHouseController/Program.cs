@@ -56,7 +56,38 @@ namespace NewTheWareHouseController
                         Console.Clear();
                         break;
                     case "3":
-                       // FindClosestWareHouse();
+                        Console.WriteLine("use Call Nun To Select With product you want");
+                        TestFunktionShowProducktList();
+                        int productNun = -1;
+                        bool productNunCheck = false;
+                        while (productNunCheck == false)
+                        {
+                            if (Int32.TryParse(Console.ReadLine(), out productNun))
+                                productNunCheck = true;
+                            else
+                                Console.WriteLine("String could not be parsed. Plz use numbers");
+                        }
+                        Console.WriteLine("How Many");
+                        int amount = -1;
+                        bool amountCheck = false;
+                        while (amountCheck == false)
+                        {
+                            if (Int32.TryParse(Console.ReadLine(), out amount))
+                                amountCheck = true;
+                            else
+                                Console.WriteLine("String could not be parsed. Plz use numbers");
+                        }
+                        Console.WriteLine("\nWere From");
+                        Location location = new Location() { };
+                        Console.WriteLine("what Country");
+                        location.Country = Console.ReadLine();
+                        Console.WriteLine("what Municipality");
+                        location.Municipality = Console.ReadLine();
+                        List<Product> PL = FindProduct(ProductList[productNun], location);
+                        foreach (var p in PL)
+                        {
+                            Console.WriteLine(p.Location.Country + " Name = " + p.Name + " Price = " + p.Price + " Quantity = " + p.Quantity);
+                        }
                         break;
 # region .           4 = AddProduct
                     case "4":
@@ -149,7 +180,7 @@ namespace NewTheWareHouseController
             NewProduct.ID = ID;
             NewProduct.Name = Name;
             NewProduct.Price = 5;
-            NewProduct.Quantity = 0;
+            NewProduct.Quantity = Quantity;
             //NewProduct.Location = location;
             ProductList.Add(NewProduct);
             return NewProduct;
@@ -169,36 +200,45 @@ namespace NewTheWareHouseController
             if (CountryChecked.Count == 0)
             {
                 // if there are no warehouses in the Country is there no reason to send back a emty list and no reason to check Municipality
-                return noneCheckedWareHouses;
+                List<WareHouse> LW = new List<WareHouse>();
+                LW.AddRange(noneCheckedWareHouses);
+                return LW;
             }
-            List<WareHouse> MunicipalityChecked = noneCheckedWareHouses.FindAll(x => x.municipality == location.Municipality);
+            List<WareHouse> MunicipalityChecked = CountryChecked.FindAll(x => x.municipality == location.Municipality);
             if (MunicipalityChecked.Count == 0)
             {
-                MunicipalityChecked.AddRange(noneCheckedWareHouses);
+                MunicipalityChecked.AddRange(CountryChecked);
             }
             return MunicipalityChecked;
         }
+
         public List<Product> FindProduct(Product product, Location location)
         {
             List<Product> CurrentFound = new List<Product>();
             int QuantityLeft = product.Quantity;
             List<WareHouse> noneCheckedWareHouses = new List<WareHouse>();
-            while (QuantityLeft != 0)
+            noneCheckedWareHouses.AddRange(WareHouses);
+            while (QuantityLeft != 0 && noneCheckedWareHouses.Count != 0)
             {
                 List<WareHouse> ClosestWarehousest = FindClosestWareHouses(noneCheckedWareHouses, location);
+                if (ClosestWarehousest.Count != 0)
+                {
+                    //Current Bug is on quantaty
                 foreach (var ClosestWarehouse in ClosestWarehousest)
                 {
-                    if (QuantityLeft != 0)
+                    if (QuantityLeft != 0)          //NOTE Maybe use Name insted of ID
                     {
                         noneCheckedWareHouses.Remove(ClosestWarehouse);
                         int ClosestQuantity = ClosestWarehouse.ProductList.Find(x => x.ID == product.ID).Quantity;
                         if (QuantityLeft <= ClosestQuantity)
                         {
-                            //example if we need 1 and the ware house have 20 QuantityLeft = 1 ClosestQuantity = 20, will want to remove 1 from ClosestQuantity and remove QuantityLeft value from QuantityLeft and that will allways = 0 so you just as well set it to 0
-                            //adding it to the system
-                            CurrentFound.Add(ClosestWarehouse.ProductList.Find(x => x.ID == product.ID));
+                                //example if we need 1 and the ware house have 20 QuantityLeft = 1 ClosestQuantity = 20, will want to remove 1 from ClosestQuantity and remove QuantityLeft value from QuantityLeft and that will allways = 0 so you just as well set it to 0
+                                //adding it to the system
+                                Product foundproduct = ClosestWarehouse.ProductList.Find(x => x.ID == product.ID);
+                                
+                            CurrentFound.Add(foundproduct);
                             //removing the Quantity
-                            ClosestWarehouse.ProductList.Find(x => x.ID == product.ID).Quantity = -QuantityLeft;
+                            ClosestWarehouse.ProductList.Find(x => x.ID == product.ID).Quantity -= QuantityLeft;
                             QuantityLeft = 0;
                         }else
                         {
@@ -207,20 +247,21 @@ namespace NewTheWareHouseController
                             //removing the Quantity
                             int Quantity = ClosestWarehouse.ProductList.Find(x => x.ID == product.ID).Quantity;
                             ClosestWarehouse.ProductList.Find(x => x.ID == product.ID).Quantity = 0;
-                            QuantityLeft = -Quantity;
+                            QuantityLeft -= Quantity;
                             
                         };
                         
                     }
                 }
+                }
             }
             List<Product> ReturnList = new List<Product>()
             {
                   new Product(){ID = -1,Name = "Apple",Quantity = 25,Location = new Location(){Area = 1,Country="Russia",Municipality="esbjerg"}}
-                , new Product(){ID = -2,Name = "Apple",Quantity = 6 ,Location = new Location(){Area = 2,Country="Denmark",Municipality="esbjerg"}}
+                , new Product(){ID = -2,Name = "Apple",Quantity = 10 ,Location = new Location(){Area = 2,Country="Denmark",Municipality="esbjerg"}}
                 , new Product(){ID = -3,Name = "Apple",Quantity = 25,Location = new Location(){Area = 3,Country="Russia",Municipality="esbjerg"}},
             };
-            return ReturnList;
+           // return ReturnList;
             return CurrentFound;
         }
         //public bool RemoveProducts(Product product)
