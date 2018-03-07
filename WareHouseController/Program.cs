@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WareHouse = Warehouse.Warehouse;
 using Product = ShoppingSystem_Entities.Product;
 using Location = ShoppingSystem_Entities.Location;
-namespace WareHouseController
+namespace OLDWareHouseController
 {
     class Program
     {
@@ -14,8 +14,11 @@ namespace WareHouseController
         List<Product> WareList = new List<Product>(); // List Af Product som Kunen vil købe
         static void Main(string[] args)
         {
-            
-            
+            //This is for testing
+            Console.WriteLine("Blah");
+            //TestRun();
+
+            Console.ReadLine();
         }
         public void TestRun()
         {

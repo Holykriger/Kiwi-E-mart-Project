@@ -6,6 +6,7 @@ namespace MultipleWarehouses
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Hello World!");
 
             Task.Factory.StartNew(() => new Warehouse.Warehouse(1, "Danmark", "Esbjerg"));

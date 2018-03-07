@@ -38,7 +38,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +48,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClientUI\ClientUI.csproj">
+      <Project>{ea9ac1d9-f1fd-4fcb-9f66-f099c865ee5a}</Project>
+      <Name>ClientUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShoppingSystem_Entities\ShoppingSystem_Entities.csproj">
       <Project>{701c933b-d04b-4129-8ab0-6257c24022b2}</Project>
       <Name>ShoppingSystem_Entities</Name>

@@ -6,12 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyNetQ" Version="2.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Basket\Basket.csproj" />
     <ProjectReference Include="..\ShoppingSystem_Entities\ShoppingSystem_Entities.csproj" />
+    <ProjectReference Include="..\Warehouse\Warehouse.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Basket;
+using System;
 
 namespace Retail
 {
@@ -7,11 +8,11 @@ namespace Retail
         static void Main(string[] args)
         {
             RetailRequestResponse_Login.AwaitLoginAttempts();
-            Basket.BasketManager.CreateObjectPool(10);
-            Basket.BasketManager.FillTestBasket("Dennis123");
-            Basket.BasketManager.FillTestBasket("Martin123");
-            Basket.BasketManager.FillTestBasket("Simon123");
-            Basket.BasketManager.FillTestBasket("Alex123");
+            BasketManager.CreateObjectPool(10);
+            BasketManager.FillTestBasket("Dennis123");
+            BasketManager.FillTestBasket("Martin123");
+            BasketManager.FillTestBasket("Simon123");
+            BasketManager.FillTestBasket("Alex123");
 
 
         }

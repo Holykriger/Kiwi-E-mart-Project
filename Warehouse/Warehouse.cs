@@ -10,7 +10,7 @@ namespace Warehouse
         public int id { get; set; }
         public string country { get; set; }
         public string municipality { get; set; }
-        List<Product> WareList = new List<Product>(); // List Af Product som WareHuset har pÅ Stock
+        public List<Product> ProductList = new List<Product>(); // List Af Product som WareHuset har pÅ Stock
 
         public Warehouse(int id, string country, string municipality)
         {
