@@ -9,13 +9,12 @@ namespace Checkout
 {
     class Payment
     {
-        private BasketManager _basketManager;
         private Shipment _shipment;
         public List<Product> ListOfProducts(string userID)
         {
-            _basketManager.CreateObjectPool(10);
+            BasketManager.CreateObjectPool(10);
 
-            _basketManager.GetObjectPool(userID);
+            BasketManager.GetObjectPool(userID);
 
             //Doesn't show list, list is private, talk with Dennis later
             var list = BasketManager.activelist[userID];
