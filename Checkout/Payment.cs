@@ -12,13 +12,9 @@ namespace Checkout
         private Shipment _shipment;
         public List<Product> ListOfProducts(string userID)
         {
-            BasketManager.CreateObjectPool(10);
 
-            BasketManager.GetObjectPool(userID);
-
-            //Doesn't show list, list is private, talk with Dennis later
-            var list = BasketManager.activelist[userID];
-            return null;
+            var list = BasketManager.activelist[userID].ShowContent;
+            return list;
 
         }
         public int TotalCost(List<Product> list)

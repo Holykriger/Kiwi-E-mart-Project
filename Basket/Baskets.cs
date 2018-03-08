@@ -27,5 +27,10 @@ namespace Basket
             _basketContents.Remove(p);
         }
 
+        public List<Product> ShowContent
+        {
+            get { return _basketContents; }
+        }
+
     }
 }
