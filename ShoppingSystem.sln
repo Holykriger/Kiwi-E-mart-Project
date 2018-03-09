@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OLDWareHouseController", "W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitoring", "Monitoring\Monitoring.csproj", "{FF974C43-BC95-41BF-A968-3F8304472FE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewTheWareHouseController", "NewTheWareHouseController\NewTheWareHouseController.csproj", "{8599070F-9A45-459C-B087-F2B0078AD519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewTheWareHouseController", "NewTheWareHouseController\NewTheWareHouseController.csproj", "{8599070F-9A45-459C-B087-F2B0078AD519}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

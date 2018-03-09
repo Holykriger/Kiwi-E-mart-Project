@@ -10,4 +10,12 @@ namespace Checkout
             Console.WriteLine("Hello World!");
         }
     }
+    class TestClass
+    {
+        TestClass()
+        {
+
+        }
+
+    }
 }

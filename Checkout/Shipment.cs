@@ -15,9 +15,9 @@ namespace Checkout
                 cost += Location.ShippingCost(product.Location, to);
             return cost;
         }
-        public void Time()
+        public int Time()
         {
-
+            return -1;
         }
     }
 }

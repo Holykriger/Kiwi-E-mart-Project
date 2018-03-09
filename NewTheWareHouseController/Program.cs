@@ -87,7 +87,8 @@ namespace NewTheWareHouseController
                         location.Country = Console.ReadLine();
                         Console.WriteLine("what Municipality");
                         location.Municipality = Console.ReadLine();
-                        List<Product> PL = FindProduct(productLookingFor, location);
+                        productLookingFor.Location = location;
+                        List<Product> PL = FindProduct(productLookingFor);
                         foreach (var p in PL)
                         {
                             Console.WriteLine(p.Location.Country + " Name = " + p.Name + " Price = " + p.Price + " Quantity = " + p.Quantity);
@@ -216,7 +217,8 @@ namespace NewTheWareHouseController
             return MunicipalityChecked;
         }
 
-        public List<Product> FindProduct(Product product, Location location)
+        // the incoming prouct is use as a description of what the customor wants,
+        public List<Product> FindProduct(Product product)
         {
             List<Product> CurrentFound = new List<Product>();
             int QuantityLeft = product.Quantity;
@@ -224,7 +226,7 @@ namespace NewTheWareHouseController
             noneCheckedWareHouses.AddRange(WareHouses);
             while (QuantityLeft != 0 && noneCheckedWareHouses.Count != 0)
             {
-                List<WareHouse> ClosestWarehousest = FindClosestWareHouses(noneCheckedWareHouses, location);
+                List<WareHouse> ClosestWarehousest = FindClosestWareHouses(noneCheckedWareHouses, product.Location);
                 if (ClosestWarehousest.Count != 0)
                 {
                     //Current Bug is on quantaty
