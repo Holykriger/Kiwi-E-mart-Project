@@ -17,7 +17,7 @@ namespace Checkout
 
         public Payment()
         {
-            ProduktList = new WareHouseConegtion().GetProdukts(p);
+          //  ProduktList = new WareHouseConegtion().GetProdukts(p);
         }
         public Receipt MakeReceipt()
         {

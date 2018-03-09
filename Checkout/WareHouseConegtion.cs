@@ -12,13 +12,13 @@ namespace Checkout
         {
             List<List<Product>> ProduktsList = new List<List<Product>>();
             List<Product> ProduktList = new List<Product>();
-            WareHouseController WHC = GetWarhousecontroller();
+            //WareHouseController WHC = GetWarhousecontroller();
             foreach (var wantedproduct in Wantedproducts)
             {
-                WHC.
+              //  WHC.
             }
             //Get WareHouse Controller and use FindProduct(product)
-            return ProduktList;
+            return ProduktsList;
         }
     }
 }
