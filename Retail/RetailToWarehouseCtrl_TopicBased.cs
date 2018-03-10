@@ -47,6 +47,7 @@ namespace Retail
                     break;
                 default:
                     break;
+
             }
             return topic;
         }
