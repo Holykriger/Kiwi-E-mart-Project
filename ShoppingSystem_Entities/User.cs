@@ -18,6 +18,7 @@ namespace ShoppingSystem_Entities
         }
 
         public static bool VerifyUserCredentials(User loginInfo) {
+            Console.WriteLine("Attempting to verify user - USERNAME: "+loginInfo.userName + " PASSWORD: "+loginInfo.password);
             foreach (var user in UserList)
             {
                 if (user.userName.Equals(loginInfo.userName) && user.password.Equals(loginInfo.password))

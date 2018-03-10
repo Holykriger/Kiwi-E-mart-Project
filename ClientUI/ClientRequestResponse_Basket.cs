@@ -1,5 +1,7 @@
 ﻿using EasyNetQ;
+using Monitoring;
 using ShoppingSystem_Entities;
+using ShoppingSystem_Entities.HTTPRequests;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,43 +9,26 @@ using System.Threading.Tasks;
 
 namespace ClientUI
 {
-    class ClientRequestResponse_Basket
+    public class ClientRequestResponse_Basket
     {
-        public static void AttemptToAddProduct(string product) //should probably be a 'product' object and not a string.
-        {
-            AddProduct(product);
-        }
+        #region Add Product
 
-        static void AddProduct(string product)
-        {
-            using (var bus = RabbitHutch.CreateBus("host=localhost;timeout=2"))
-            {
-                try
-                {
-                    //Console.WriteLine("Attempting to log in with USERNAME: " + userName + " and PASSWORD: " + password); //Showing password for debugging.
-                    //var task = bus.RequestAsync<User, Cookie>(new User(userName, password));
-                    // Each response is handled by a separate task.
-                    // the requester can have multiple outstanding requests.
-                    //task.ContinueWith(response => HandleResponse(response)).Wait();
-                }
-                catch (AggregateException ex)
-                {
-                    Console.WriteLine("Failed to use Basket.");
-                }
-            }
-        }
-
-        static void HandleResponse(Task<Cookie> response)
+        public static void AddProductHandleResponse(Task<HTTPRequest_RetailerToClientGateway> response)
         {
             if (response.Result != null)
             {
+                Console.WriteLine("Succesfully added product to basket.");
                 //handle result
+                ClientSession.Basket = response.Result.Basket;
+                response.Result.Basket.DisplayBasket();
             }
             else
             {
-                Console.WriteLine("ERROR - Basket Error");
+                Console.WriteLine("ERROR - Basket Error - HTTP Request for confirming product that product was added is null");
             }
             Console.WriteLine("Please press >ENTER< to continue...");
         }
+        #endregion
     }
+
 }

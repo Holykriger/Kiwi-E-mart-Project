@@ -1,61 +1,36 @@
 ﻿using EasyNetQ;
+using EasyNetQ.Topology;
 using Monitoring;
 using ShoppingSystem_Entities;
+using ShoppingSystem_Entities.HTTPRequests;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Basket;
 
 namespace ClientUI
 {
-    class ClientRequestResponse_Login
+    public class ClientRequestResponse_Login
     {
-        /*
-         To measure:
-         "Where is the problem?" before you start fixing it.
-         Response times from client to server.
-         Response times inside server.
-         Database response times.
-        */
-
+ 
         static bool LoggedInSuccesfully;
-        static MonitorObject MonitorObject;
-        public static void AttemptLogin(string userName, string password) {
-            Login(userName, password);
-            
-        }
 
-        static void Login(string userName, string password)
-        {
-            using (var bus = RabbitHutch.CreateBus("host=localhost;timeout=2"))
-            {
-                try {
-                    MonitorObject = new MonitorObject();
-                    MonitorObject.StartMonitoring();
-                    Console.WriteLine("Attempting to log in with USERNAME: " + userName + " and PASSWORD: " + password); //Showing password for debugging.
-                    var task = bus.RequestAsync<User, Cookie>(new User(userName, password));
-                    // Each response is handled by a separate task.
-                    // the requester can have multiple outstanding requests.
-                    task.ContinueWith(response => HandleResponse(response)).Wait();
-                }
-                catch (AggregateException ex) {
-                    LoggedInSuccesfully = false;
-                    Console.WriteLine("Failed to log in.");
-                    MonitorObject.StopMonitoring();
-                }
-            }
-        }
-
-        static void HandleResponse(Task<Cookie> response)
+        public static void HandleLoginResponse(Task<HTTPRequest_RetailerToClientGateway> response)
         {
             if (response.Result != null)
             {
-                Cookie cookieReceived = response.Result;
+                Cookie cookieReceived = response.Result.Cookie;
                 ClientSession.ClientCookie = cookieReceived;
+                ClientSession.CurrentProductListDisplayed = response.Result.Products;
+                Console.WriteLine("User string: " + cookieReceived.CurrentCookieString);
                 if (Cookie.ClientCheckIsValidUserString(cookieReceived.CurrentCookieString))
                 {
                     LoggedInSuccesfully = true;
                     Console.WriteLine("Successfully logged in.");
+                    Console.WriteLine("");
+                    //ClientSession.CurrentProductListDisplayed = response.Result.Products;
+                    //ClientSession.Basket = response.Result.Basket;
                 }
                 else
                 {
@@ -68,9 +43,17 @@ namespace ClientUI
                 LoggedInSuccesfully = false;
                 Console.WriteLine("Failed to log in.");
             }
-            MonitorObject.StopMonitoring();
-            Console.WriteLine("Login time: "+ MonitorObject.TimeSpan);
+
             Console.WriteLine("Please press >ENTER< to continue...");
+        }
+
+        public static bool IsLoggedIn()
+        {
+            if (ClientSession.ClientCookie == null)
+            {
+                return false;
+            }
+            return Cookie.ClientCheckIsValidUserString(ClientSession.ClientCookie.CurrentCookieString);
         }
     }
 }
