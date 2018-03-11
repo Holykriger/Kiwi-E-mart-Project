@@ -24,7 +24,14 @@ namespace Retail
             {
                 Console.WriteLine("Valid user account string, responding with product list.");
                 #region Construct response with list of products.
-                response.Products = getTestProductList();
+                //Get product list from warehouse
+                HTTPRequest_RetailToWarehouse requestToForward = new HTTPRequest_RetailToWarehouse();
+                requestToForward.WarehouseCmd = HTTPRequest_RetailToWarehouse.WarehouseCommand.ViewProducts;
+                RetailToWarehouseCtrl_TopicBased rtwhctrl = new RetailToWarehouseCtrl_TopicBased();
+                HTTPRequest_WarehouseToRetail wrhouseResponse = rtwhctrl.PublishToWarehouse(request.Location, requestToForward, RetailToWarehouseCtrl_TopicBased.WhichWarehouses.All);
+                //rtwhctrl.SubscribeToWarehouse(request.Location, requestToForward, RetailToWarehouseCtrl_TopicBased.WhichWarehouses.All);
+                response.Products = wrhouseResponse.Products;
+                //response.Products = getTestProductList();
                 #endregion
                 return response;
             }

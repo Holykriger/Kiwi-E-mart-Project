@@ -14,7 +14,7 @@ namespace Retail
 
         public static void ReceiveAndHandleRequests()
         {
-            using (var bus = RabbitHutch.CreateBus("host=localhost"))
+            using (var bus = RabbitHutch.CreateBus("host=localhost;timeout=4"))
             {
                 bus.RespondAsync<HTTPRequest_ClientToGateway, HTTPRequest_RetailerToClientGateway>(request => Task.Factory.StartNew(() => 
                 {
