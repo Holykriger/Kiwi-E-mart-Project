@@ -15,6 +15,7 @@ namespace Checkout
     }
     public class TestClass
     {
+        
         private Product AddProduct(int ID, string Name, int Price, int Quantity)
         {
             Product NewProduct = new Product();
@@ -49,15 +50,27 @@ namespace Checkout
                         "1 = Simulation Of Buying\n" +
                         "2 = Show Kvitering\n" +
                         "3 = Clear Console\n" +
+                        "4 = Show OutPut From WareHouseConegtion.GetProdukts\n" +
                         "");
                     string Text = Console.ReadLine();
                     switch (Text)
                     {
                         case "1":
+                        //This is Location
+                        Console.WriteLine("Choose a location");
+                        int num = 0;
+                        foreach (var locatio in listLocations)
+                        {
+                            Console.WriteLine("num = " + num + " Country = " + locatio.Country + " Municipality = " + locatio.Municipality);
+                            num++;
+                        }
+                        Location ShippingAdress = listLocations[GetAmount()];
+
+                        //this is making a list of wanted products
                         List<Product> listofProducts = new List<Product>();
                         listofProducts.AddRange(listWantedProducts);
                         listWantedProducts.Clear();
-                        int num = 0;
+                        num = 0;
                         int ChossenNum = 0;
                         while (ChossenNum != -1)
                         {
@@ -74,23 +87,25 @@ namespace Checkout
                                 Product CP = listofProducts[ChossenNum];
                                 Console.WriteLine("how many do you want");
                                 CP.Quantity = GetAmount();
+                                CP.Location = ShippingAdress;
                                 listWantedProducts.Add(CP);
                             }
                             Console.WriteLine("Product Have Been Add Your Corent have = " + listWantedProducts.Count + " Difrent Wares");
                         }
-                        Console.WriteLine("Choose a location");
-                        num = 0;
-                        foreach (var locatio in listLocations)
-                        {
-                            Console.WriteLine("num = " + num + " Country = " + locatio.Country+ " Municipality = " + locatio.Municipality);
-                            num++;
-                        }
-                        Location ShippingAdress = listLocations[GetAmount()];
                         Console.WriteLine("now Have order Been Made");
+                        // this is getting a the products from the warehouse controller
                         //WareHouseCongtion Part
-                    //    List<List<Product>> WareHouseStuff(List<Product>);
-                        //Show Kvitering Part
-
+                        //    List<List<Product>> WareHouseStuff(List<Product>);
+                        List<List<Product>> BougthProduckts = new WareHouseConegtion().GetProdukts(new List<Product>());
+                        //this is Show Kvitering Part
+                        foreach (var ListOFProducts in BougthProduckts)
+                        {
+                            Console.WriteLine(ListOFProducts[0].Name);
+                            foreach (var item in ListOFProducts)
+                            {
+                                Console.WriteLine("    Name = " + item.Name + "   Quantity = " + item.Quantity);
+                            }
+                        }
                         break;
                         case "2": //Show Kvitering
                             Console.WriteLine("You Hae Chossen Show Kvitering");
@@ -110,7 +125,18 @@ namespace Checkout
                         case "3":
                             Console.Clear();
                             break;
-                        default:
+                        case "4":
+                        
+                        foreach (var ListOFProducts in new WareHouseConegtion().GetProdukts(new List<Product>() { new Product() { Name = "This is a Test a Test" } }))
+                        {
+                            Console.WriteLine(ListOFProducts[0].Name);
+                            foreach (var item in ListOFProducts)
+                            {
+                                Console.WriteLine("    Name = " + item.Name + "   Quantity = " + item.Quantity);
+                            }
+                        }
+                        break;
+                    default:
                             break;
                     }
                     Console.WriteLine(Text);
