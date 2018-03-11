@@ -40,7 +40,7 @@ namespace Warehouse
                     new Product(){ ID = 1, Description = "description1", Name = "Banana", Quantity = 1, Price = 50, Location = location },
                     new Product(){ ID = 2, Description = "description2", Name = "Phone", Quantity = 2, Price = 500, Location = location },
                     new Product(){ ID = 3, Description = "description3", Name = "Bed", Quantity = 3, Price = 5000, Location = location },
-                    new Product(){ ID = 1, Description = "description1", Name = "Food from "+location.Municipality, Quantity = 1, Price = 50, Location = location },};
+                    new Product(){ ID = 4+id, Description = "description4", Name = "Food from "+location.Municipality, Quantity = 1, Price = 50000, Location = location },};
         }
     }
 }

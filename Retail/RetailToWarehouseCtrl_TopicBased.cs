@@ -5,6 +5,7 @@ using System.Threading;
 using EasyNetQ;
 using ShoppingSystem_Entities;
 using ShoppingSystem_Entities.HTTPRequests;
+using System.Linq;
 
 namespace Retail
 {
@@ -48,7 +49,28 @@ namespace Retail
 
         void HandleResponse(HTTPRequest_WarehouseToRetail response)
         {
-            toReturn = response;
+            gotReply = true;
+            switch (response.WarehouseCmd)
+            {
+                case HTTPRequest_RetailToWarehouse.WarehouseCommand.ViewProducts:
+                    if (toReturn == null)
+                    {
+                        toReturn = response;
+                    }
+                    else
+                    {
+                        foreach (var product in response.Products)
+                        {
+                            toReturn.Products.Add(product);
+                        };
+                    }
+                    break;
+                case HTTPRequest_RetailToWarehouse.WarehouseCommand.PurchaseProducts:
+                    break;
+                default:
+                    break;
+            }
+
             lock (this)
             {
                 Monitor.Pulse(this);
