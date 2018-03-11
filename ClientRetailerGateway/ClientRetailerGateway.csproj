@@ -6,11 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyNetQ" Version="2.2.0" />
+    <PackageReference Include="EasyNetQ" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Basket\Basket.csproj" />
     <ProjectReference Include="..\Monitoring\Monitoring.csproj" />
     <ProjectReference Include="..\ShoppingSystem_Entities\ShoppingSystem_Entities.csproj" />
   </ItemGroup>

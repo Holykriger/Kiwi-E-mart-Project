@@ -7,6 +7,18 @@ namespace Basket
 {
     public class BasketManager
     {
+        private static BasketManager Instance;
+        private BasketManager() {
+
+        }
+        public static BasketManager Singleton() {
+            if (Instance == null)
+            {
+                Instance = new BasketManager();
+            }
+            return Instance;
+        }
+
         //reference to the objectpool blueprint
         static BasketObjectPool<Baskets> objPool;
 
@@ -16,9 +28,18 @@ namespace Basket
 
 
         //adds object to user's basket
-        public void AddObjectToUserBasket(string userID, Product product)
+        public Baskets AddObjectToUserBasket(string userID, Product product)
         {
-            activelist[userID].AdditemToBasket(product);
+            Baskets basket = activelist[userID];
+            basket.AdditemToBasket(product);
+            return basket;
+        }
+
+        //get user's basket
+        public Baskets GetUserBasket(string userID)
+        {
+            Baskets basket = activelist[userID];
+            return basket;
         }
 
         //removes product from user's basket
@@ -52,7 +73,14 @@ namespace Basket
             
             //gets object from the pool
             Baskets obj = objPool.Get();
-
+            if (obj == null)
+            {
+                Console.WriteLine("Basket obj is null");
+            }
+            else
+            {
+                Console.WriteLine("Adding to object pool");
+            }
             //moves it to the dictionary
             activelist.Add(userID, obj);
 
@@ -61,11 +89,13 @@ namespace Basket
         //creates the objectpool where size is the amount of empty baskets
        public static void CreateObjectPool(int size)
         {
+            Console.WriteLine("Creating basket object pool.");
              objPool = new BasketObjectPool<Baskets>(size);
         }
 
         public static void FillTestBasket(string userID)
         {
+            Console.WriteLine("Filling test basket for " + userID);
             GetObjectPool(userID);
             activelist[userID].AdditemToBasket(new Product{ ID = 1, Name = "Banana", Quantity = 5, Description = "Its a Banana"});
             activelist[userID].AdditemToBasket(new Product { ID = 2, Name = "Seng", Quantity = 4, Description = "Its a Bed God Damnit" });

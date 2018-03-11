@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using ShoppingSystem_Entities;
 
 
-namespace Basket
+namespace ShoppingSystem_Entities
 {
     public class Baskets
     {
@@ -30,6 +30,19 @@ namespace Basket
         public List<Product> ShowContent
         {
             get { return _basketContents; }
+        }
+
+        public void DisplayBasket() {
+            Console.WriteLine("Basket content");
+            foreach (var product in _basketContents)
+            {
+                if (product == null)
+                {
+                    Console.WriteLine("Basket product is null");
+                }
+                string productString = product.Name;//String.Format("ID: {0}, Name: {1}, Quantity: {2}, Price for each: {3}", product.ID, product.Name, product.Quantity, product.Price);
+                Console.WriteLine(productString);
+            }
         }
 
     }
