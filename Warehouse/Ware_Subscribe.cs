@@ -24,7 +24,7 @@ namespace Warehouse
             ware_Publisher = new Ware_Publisher();
             using (var bus = RabbitHutch.CreateBus("host=localhost"))
             {
-                bus.Subscribe<HTTPRequest_RetailToWarehouse>("subscriber" + id, HandleResponse, x => x.WithTopic(topic));
+                bus.Subscribe<HTTPRequest_RetailToWarehouse>("subscriber" + id + location.Country + location.Municipality, HandleResponse, x => x.WithTopic(topic));
                 Console.WriteLine("Listening for messages. Hit <return> to quit.");
                 Console.ReadLine();
             }
